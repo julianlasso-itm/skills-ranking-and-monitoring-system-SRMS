@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMS.Backend", "SRMS.Backen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMS.Shared", "SRMS.Shared\SRMS.Shared.csproj", "{98E13C46-6588-4AA8-83B7-4D85A8D3E660}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMS.Tests", "SRMS.Tests\SRMS.Tests.csproj", "{CED50EAB-1C9A-4C69-B64E-9585B2BF5995}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{98E13C46-6588-4AA8-83B7-4D85A8D3E660}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98E13C46-6588-4AA8-83B7-4D85A8D3E660}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98E13C46-6588-4AA8-83B7-4D85A8D3E660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED50EAB-1C9A-4C69-B64E-9585B2BF5995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED50EAB-1C9A-4C69-B64E-9585B2BF5995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED50EAB-1C9A-4C69-B64E-9585B2BF5995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED50EAB-1C9A-4C69-B64E-9585B2BF5995}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
