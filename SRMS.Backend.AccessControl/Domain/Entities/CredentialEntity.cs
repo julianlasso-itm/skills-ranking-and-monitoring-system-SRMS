@@ -21,6 +21,7 @@ public class CredentialEntity
 
     public void Register(EmailValueObject email, PasswordValueObject password, List<RoleEntity>? roles = null)
     {
+        CredentialId = new CredentialIdValueObject(Guid.NewGuid().ToString());
         Email = email;
         Password = password;
         IsDisable = new DisableValueObject(false);
