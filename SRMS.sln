@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMS.Tests", "SRMS.Tests\SR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMS.Backend.AccessControl", "SRMS.Backend.AccessControl\SRMS.Backend.AccessControl.csproj", "{FC2F5CF7-43FD-4108-B2A7-02666E50FBEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMS.Backend.AccessControl.Tests", "SRMS.Backend.AccessControl.Tests\SRMS.Backend.AccessControl.Tests.csproj", "{BCF541CC-C142-4A56-A08D-AD2398830BAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{FC2F5CF7-43FD-4108-B2A7-02666E50FBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC2F5CF7-43FD-4108-B2A7-02666E50FBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC2F5CF7-43FD-4108-B2A7-02666E50FBEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCF541CC-C142-4A56-A08D-AD2398830BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF541CC-C142-4A56-A08D-AD2398830BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF541CC-C142-4A56-A08D-AD2398830BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF541CC-C142-4A56-A08D-AD2398830BAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
