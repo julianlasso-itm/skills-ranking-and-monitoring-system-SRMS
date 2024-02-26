@@ -1,0 +1,6 @@
+@SRMS.Backend.AccessControl_HostAddress = http://localhost:5240
+
+GET {{SRMS.Backend.AccessControl_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
