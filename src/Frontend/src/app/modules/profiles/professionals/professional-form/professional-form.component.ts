@@ -23,6 +23,7 @@ import { Constant } from '../../../shared/constants/constants';
 import { HttpService } from '../../../shared/services/http.service';
 import { ReloadDataService } from '../../../shared/services/reload-data.service';
 import { SharedModule } from '../../../shared/shared.module';
+import { handleException } from '../../../shared/utils/handle.exception';
 import { IProfessional } from '../professional/professional.interface';
 
 const URL_PROFESSIONAL = `${Constant.URL_BASE}${Constant.URL_PROFESSIONAL}`;
@@ -60,7 +61,11 @@ export class ProfessionalFormComponent implements OnInit {
           Validators.required,
           Validators.maxLength(50),
         ]),
-        email: new FormControl('', [Validators.maxLength(50), Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+        email: new FormControl('', [
+          Validators.maxLength(50),
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ]),
       })
     );
     this.form = new EventEmitter<Signal<FormGroup>>();
@@ -107,7 +112,7 @@ export class ProfessionalFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -133,27 +138,11 @@ export class ProfessionalFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
       },
     });
-  }
-
-  private handleException(error: any): void {
-    if (error.status === 409 && error.error.Errors.startsWith('23505')) {
-      this.snackBar.open('El correo electronico asociado ya está registrado', 'Cerrar', {
-        duration: 5000,
-      });
-    } else {
-      this.snackBar.open(
-        'Hay un error no controlado al crear un Profesional, por favor contacte al administrador del sistema.',
-        'Cerrar',
-        {
-          duration: 5000,
-        }
-      );
-    }
   }
 }

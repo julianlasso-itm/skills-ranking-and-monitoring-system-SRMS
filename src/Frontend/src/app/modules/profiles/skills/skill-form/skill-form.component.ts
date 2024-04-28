@@ -23,6 +23,7 @@ import { Constant } from '../../../shared/constants/constants';
 import { HttpService } from '../../../shared/services/http.service';
 import { ReloadDataService } from '../../../shared/services/reload-data.service';
 import { SharedModule } from '../../../shared/shared.module';
+import { handleException } from '../../../shared/utils/handle.exception';
 import { ISkill } from '../skill/skill.interface';
 
 const URL_SKILL = `${Constant.URL_BASE}${Constant.URL_SKILL}`;
@@ -102,7 +103,7 @@ export class SkillFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -125,27 +126,11 @@ export class SkillFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
       },
     });
-  }
-
-  private handleException(error: any): void {
-    if (error.status === 409 && error.error.Errors.startsWith('23505')) {
-      this.snackBar.open('La habilidad que intentas crear ya existe', 'Cerrar', {
-        duration: 5000,
-      });
-    } else {
-      this.snackBar.open(
-        'Hay un error no controlado al crear una Habilidad',
-        'Cerrar',
-        {
-          duration: 5000,
-        }
-      );
-    }
   }
 }

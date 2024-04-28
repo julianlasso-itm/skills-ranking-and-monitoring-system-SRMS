@@ -25,6 +25,7 @@ import { Constant } from '../../../shared/constants/constants';
 import { HttpService } from '../../../shared/services/http.service';
 import { ReloadDataService } from '../../../shared/services/reload-data.service';
 import { SharedModule } from '../../../shared/shared.module';
+import { handleException } from '../../../shared/utils/handle.exception';
 import { ICountry } from '../../countries/country/country.interface';
 import { IProvince } from '../../provinces/province/province.interface';
 import { ICity } from '../city/city.interface';
@@ -130,7 +131,7 @@ export class CityFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -154,7 +155,7 @@ export class CityFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -164,7 +165,10 @@ export class CityFormComponent implements OnInit {
 
   private loadCountries(): void {
     this.frmCity().disable();
-    let params = new HttpParams().append('Page', 1).append('Limit', 9999999);
+    let params = new HttpParams()
+      .append('Page', 1)
+      .append('Limit', 9999999)
+      .append('Sort', 'Name');
     this.httpService.get(URL_GET_COUNTRIES, params).subscribe({
       next: (response: any) => {
         console.log(response);
@@ -173,7 +177,7 @@ export class CityFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -185,13 +189,17 @@ export class CityFormComponent implements OnInit {
     this.frmCity().disable();
     let params: HttpParams;
     if (countryId === '') {
-      params = new HttpParams().append('Page', 1).append('Limit', 9999999);
+      params = new HttpParams()
+        .append('Page', 1)
+        .append('Limit', 9999999)
+        .append('Sort', 'Name');
     } else {
       params = new HttpParams()
         .append('Page', 1)
         .append('Limit', 9999999)
         .append('Filter', countryId)
-        .append('FilterBy', 'CountryId');
+        .append('FilterBy', 'CountryId')
+        .append('Sort', 'Name');
     }
     this.httpService.get(URL_GET_PROVINCES, params).subscribe({
       next: (response: any) => {
@@ -201,27 +209,11 @@ export class CityFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
       },
     });
-  }
-
-  private handleException(error: any): void {
-    const errorMessages = new Map([
-      ['409_23505', 'El registro ya existe'],
-      [
-        '409_23503',
-        'No es posible eliminar un registro porque tiene otros registros asociados',
-      ],
-    ]);
-
-    const errorKey = `${error.status}_${error.error.Errors.substring(0, 5)}`;
-    const message =
-      errorMessages.get(errorKey) ?? error.error.Errors ?? 'Error desconocido';
-
-    this.snackBar.open(message, 'Cerrar', { duration: 5000 });
   }
 }

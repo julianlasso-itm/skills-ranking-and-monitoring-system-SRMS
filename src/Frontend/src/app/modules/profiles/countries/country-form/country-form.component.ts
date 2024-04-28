@@ -23,6 +23,7 @@ import { Constant } from '../../../shared/constants/constants';
 import { HttpService } from '../../../shared/services/http.service';
 import { ReloadDataService } from '../../../shared/services/reload-data.service';
 import { SharedModule } from '../../../shared/shared.module';
+import { handleException } from '../../../shared/utils/handle.exception';
 import { ICountry } from '../country/country.interface';
 
 const URL_COUNTRY = `${Constant.URL_BASE}${Constant.URL_COUNTRY}`;
@@ -103,7 +104,7 @@ export class CountryFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -126,27 +127,11 @@ export class CountryFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
       },
     });
-  }
-
-  private handleException(error: any): void {
-    const errorMessages = new Map([
-      ['409_23505', 'El registro ya existe'],
-      [
-        '409_23503',
-        'No es posible eliminar un registro porque tiene otros registros asociados',
-      ],
-    ]);
-
-    const errorKey = `${error.status}_${error.error.Errors.substring(0, 5)}`;
-    const message =
-      errorMessages.get(errorKey) ?? error.error.Errors ?? 'Error desconocido';
-
-    this.snackBar.open(message, 'Cerrar', { duration: 5000 });
   }
 }

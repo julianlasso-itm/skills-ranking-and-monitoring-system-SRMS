@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpParams } from '@angular/common/http';
 import {
   Component,
   EventEmitter,
@@ -24,9 +25,9 @@ import { Constant } from '../../../shared/constants/constants';
 import { HttpService } from '../../../shared/services/http.service';
 import { ReloadDataService } from '../../../shared/services/reload-data.service';
 import { SharedModule } from '../../../shared/shared.module';
-import { IProvince } from '../province/province.interface';
-import { HttpParams } from '@angular/common/http';
+import { handleException } from '../../../shared/utils/handle.exception';
 import { ICountry } from '../../countries/country/country.interface';
+import { IProvince } from '../province/province.interface';
 
 const URL_PROVINCE = `${Constant.URL_BASE}${Constant.URL_PROVINCE}`;
 const URL_GET_COUNTRIES = `${Constant.URL_BASE}${Constant.URL_GET_COUNTRIES}`;
@@ -112,7 +113,7 @@ export class ProvinceFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -135,7 +136,7 @@ export class ProvinceFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
@@ -145,7 +146,10 @@ export class ProvinceFormComponent implements OnInit {
 
   private loadCountries(): void {
     this.frmProvince().disable();
-    let params = new HttpParams().append('Page', 1).append('Limit', 9999999);
+    let params = new HttpParams()
+      .append('Page', 1)
+      .append('Limit', 9999999)
+      .append('Sort', 'Name');
     this.httpService.get(URL_GET_COUNTRIES, params).subscribe({
       next: (response: any) => {
         console.log(response);
@@ -154,27 +158,11 @@ export class ProvinceFormComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.handleException(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete');
       },
     });
-  }
-
-  private handleException(error: any): void {
-    const errorMessages = new Map([
-      ['409_23505', 'El registro ya existe'],
-      [
-        '409_23503',
-        'No es posible eliminar un registro porque tiene otros registros asociados',
-      ],
-    ]);
-
-    const errorKey = `${error.status}_${error.error.Errors.substring(0, 5)}`;
-    const message =
-      errorMessages.get(errorKey) ?? error.error.Errors ?? 'Error desconocido';
-
-    this.snackBar.open(message, 'Cerrar', { duration: 5000 });
   }
 }

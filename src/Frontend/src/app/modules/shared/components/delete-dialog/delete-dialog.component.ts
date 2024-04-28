@@ -5,11 +5,12 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpService } from '../../services/http.service';
-import { SharedModule } from '../../shared.module';
-import type { IDeleteDialogData } from './delete-dialog-data.interface';
 import { ReloadDataService } from '../../services/reload-data.service';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { SharedModule } from '../../shared.module';
+import { handleException } from '../../utils/handle.exception';
+import type { IDeleteDialogData } from './delete-dialog-data.interface';
 
 @Component({
   selector: 'srms-delete-dialog',
@@ -39,29 +40,13 @@ export class DeleteDialogComponent {
         this.onCancelClick();
         this.reloadDataService.reload();
       },
-      error: (err) => {
-        console.error(err);
-        this.handleException(err);
+      error: (error) => {
+        console.error(error);
+        handleException(error, this.snackBar);
       },
       complete: () => {
         console.log('complete delete');
       },
     });
-  }
-
-  private handleException(error: any): void {
-    const errorMessages = new Map([
-      ['409_23505', 'El país que intentas crear ya existe'],
-      [
-        '409_23503',
-        'No es posible eliminar un registro porque tiene otros registros asociados',
-      ],
-    ]);
-
-    const errorKey = `${error.status}_${error.error.Errors.substring(0, 5)}`;
-    const message =
-      errorMessages.get(errorKey) ?? error.error.Errors ?? 'Error desconocido';
-
-    this.snackBar.open(message, 'Cerrar', { duration: 5000 });
   }
 }
