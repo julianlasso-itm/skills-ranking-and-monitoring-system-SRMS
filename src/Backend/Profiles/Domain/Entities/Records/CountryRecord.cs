@@ -1,11 +1,11 @@
 using Profiles.Domain.ValueObjects;
 
-namespace Profiles.Domain.Entities.Structs;
-
-internal struct ProvinceStruct
+namespace Profiles.Domain.Entities.Records
 {
-    public ProvinceIdValueObject ProvinceId { get; set; }
+  internal struct CountryRecord
+  {
     public CountryIdValueObject CountryId { get; set; }
     public NameValueObject Name { get; set; }
     public DisabledValueObject Disabled { get; set; }
+  }
 }

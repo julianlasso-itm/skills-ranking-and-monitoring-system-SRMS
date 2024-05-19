@@ -2,12 +2,12 @@ using Shared.Domain.ValueObjects.Base;
 
 namespace Profiles.Domain.ValueObjects
 {
-  public sealed class CountryIdValueObject : BaseIdValueObject
+  public class LevelIdValueObject : BaseIdValueObject
   {
-    public CountryIdValueObject(string value)
+    public LevelIdValueObject(string value)
       : base(value)
     {
-      Name = "CountryId";
+      Name = "LevelId";
       Validate();
     }
   }
