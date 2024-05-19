@@ -1,4 +1,4 @@
-﻿using Profiles.Domain.Aggregates.Dto.Requests;
+using Profiles.Domain.Aggregates.Dto.Requests;
 using Profiles.Domain.Aggregates.Dto.Responses;
 using Profiles.Domain.Entities;
 using Profiles.Domain.Entities.Records;
@@ -10,56 +10,56 @@ using Shared.Domain.ValueObjects;
 
 namespace Profiles.Domain.Aggregates.Helpers
 {
-  internal class UpdateRoleHelper
+  internal class UpdateLevelHelper
     : BaseHelper,
-      IHelper<UpdateRoleDomainRequest, UpdateRoleDomainResponse>
+      IHelper<UpdateLevelDomainRequest, UpdateLevelDomainResponse>
   {
-    public static UpdateRoleDomainResponse Execute(UpdateRoleDomainRequest data)
+    public static UpdateLevelDomainResponse Execute(UpdateLevelDomainRequest data)
     {
-      var record = GetRoleRecord(data);
-      var role = new RoleEntity(record);
-      var response = new UpdateRoleDomainResponse { RoleId = role.RoleId.Value };
+      var record = GetLevelRecord(data);
+      var level = new LevelEntity(record);
+      var response = new UpdateLevelDomainResponse { LevelId = level.LevelId.Value };
 
       if (data.Name != null)
       {
         var name = new NameValueObject(data.Name);
-        role.UpdateName(name);
-        response.Name = role.Name.Value;
+        level.UpdateName(name);
+        response.Name = level.Name.Value;
       }
 
       if (data.Description != null)
       {
         var description = new DescriptionValueObject(data.Description);
-        role.UpdateDescription(description);
-        response.Description = role.Description?.Value;
+        level.UpdateDescription(description);
+        response.Description = level.Description?.Value;
       }
 
       if (data.Disable != null)
       {
         if (data.Disable == true)
         {
-          role.Disable();
+          level.Disable();
         }
         else
         {
-          role.Enable();
+          level.Enable();
         }
-        response.Disabled = role.Disabled.Value;
+        response.Disabled = level.Disabled.Value;
       }
 
-      ValidateRecordFields(role);
+      ValidateRecordFields(level);
       ValidateAmountDataToBeUpdated(response);
 
       return response;
     }
 
-    private static RoleRecord GetRoleRecord(UpdateRoleDomainRequest data)
+    private static LevelRecord GetLevelRecord(UpdateLevelDomainRequest data)
     {
-      var id = new RoleIdValueObject(data.RoleId);
-      return new RoleRecord { RoleId = id };
+      var id = new LevelIdValueObject(data.LevelId);
+      return new LevelRecord { LevelId = id };
     }
 
-    private static void ValidateAmountDataToBeUpdated(UpdateRoleDomainResponse response)
+    private static void ValidateAmountDataToBeUpdated(UpdateLevelDomainResponse response)
     {
       var count = response.GetType().GetProperties().Count(x => x.GetValue(response) != null);
       if (count == 1)
