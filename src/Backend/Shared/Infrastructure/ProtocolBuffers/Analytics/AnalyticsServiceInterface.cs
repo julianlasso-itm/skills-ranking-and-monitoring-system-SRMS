@@ -3,32 +3,33 @@ using ProtoBuf.Grpc;
 using Shared.Infrastructure.ProtocolBuffers.Analytics.Requests;
 using Shared.Infrastructure.ProtocolBuffers.Analytics.Responses;
 
-namespace Shared.Infrastructure.ProtocolBuffers.Analytics;
-
-[ServiceContract]
-public interface IAnalyticsServices
+namespace Shared.Infrastructure.ProtocolBuffers.Analytics
 {
+  [ServiceContract]
+  public interface IAnalyticsServices
+  {
     [OperationContract]
-    Task<RegisterLevelSecurityResponse> RegisterLevelAsync(
-        RegisterLevelSecurityRequest request,
-        CallContext context = default
+    Task<RegisterLevelAnalyticsResponse> RegisterLevelAsync(
+      RegisterLevelAnalyticsRequest request,
+      CallContext context = default
     );
 
     [OperationContract]
-    Task<UpdateLevelSecurityResponse> UpdateLevelAsync(
-        UpdateLevelSecurityRequest request,
-        CallContext context = default
+    Task<UpdateLevelAnalyticsResponse> UpdateLevelAsync(
+      UpdateLevelAnalyticsRequest request,
+      CallContext context = default
     );
 
     [OperationContract]
-    Task<DeleteLevelSecurityResponse> DeleteLevelAsync(
-        DeleteLevelSecurityRequest request,
-        CallContext context = default
+    Task<DeleteLevelAnalyticsResponse> DeleteLevelAsync(
+      DeleteLevelAnalyticsRequest request,
+      CallContext context = default
     );
 
     [OperationContract]
-    Task<GetLevelsSecurityResponse> GetLevelsAsync(
-        GetLevelsSecurityRequest request,
-        CallContext context = default
+    Task<GetLevelsAnalyticsResponse> GetLevelsAsync(
+      GetLevelsAnalyticsRequest request,
+      CallContext context = default
     );
+  }
 }
