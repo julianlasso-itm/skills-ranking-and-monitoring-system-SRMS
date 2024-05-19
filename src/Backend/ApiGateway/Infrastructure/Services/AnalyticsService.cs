@@ -4,47 +4,48 @@ using Shared.Infrastructure.ProtocolBuffers.Analytics;
 using Shared.Infrastructure.ProtocolBuffers.Analytics.Requests;
 using Shared.Infrastructure.ProtocolBuffers.Analytics.Responses;
 
-namespace ApiGateway.Infrastructure.Services;
-
-public class AnalyticsService : BaseServices<IAnalyticsServices>, IAnalyticsServices
+namespace ApiGateway.Infrastructure.Services
 {
+  public class AnalyticsService : BaseServices<IAnalyticsServices>, IAnalyticsServices
+  {
     const string UrlMicroservice = "http://localhost:5098";
 
     public AnalyticsService(HttpClientHandler? httpClientHandler = null)
-        : base(httpClientHandler)
+      : base(httpClientHandler)
     {
-        CreateChannel(UrlMicroservice);
+      CreateChannel(UrlMicroservice);
     }
 
-    public Task<RegisterLevelSecurityResponse> RegisterLevelAsync(
-        RegisterLevelSecurityRequest request,
-        CallContext context = default
+    public Task<RegisterLevelAnalyticsResponse> RegisterLevelAsync(
+      RegisterLevelAnalyticsRequest request,
+      CallContext context = default
     )
     {
-        return Client.RegisterLevelAsync(request, context);
+      return Client.RegisterLevelAsync(request, context);
     }
 
-    public Task<UpdateLevelSecurityResponse> UpdateLevelAsync(
-        UpdateLevelSecurityRequest request,
-        CallContext context = default
+    public Task<UpdateLevelAnalyticsResponse> UpdateLevelAsync(
+      UpdateLevelAnalyticsRequest request,
+      CallContext context = default
     )
     {
-        return Client.UpdateLevelAsync(request, context);
+      return Client.UpdateLevelAsync(request, context);
     }
 
-    public Task<DeleteLevelSecurityResponse> DeleteLevelAsync(
-        DeleteLevelSecurityRequest request,
-        CallContext context = default
+    public Task<DeleteLevelAnalyticsResponse> DeleteLevelAsync(
+      DeleteLevelAnalyticsRequest request,
+      CallContext context = default
     )
     {
-        return Client.DeleteLevelAsync(request, context);
+      return Client.DeleteLevelAsync(request, context);
     }
 
-    public Task<GetLevelsSecurityResponse> GetLevelsAsync(
-        GetLevelsSecurityRequest request,
-        CallContext context = default
+    public Task<GetLevelsAnalyticsResponse> GetLevelsAsync(
+      GetLevelsAnalyticsRequest request,
+      CallContext context = default
     )
     {
-        return Client.GetLevelsAsync(request, context);
+      return Client.GetLevelsAsync(request, context);
     }
+  }
 }
