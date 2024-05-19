@@ -1,34 +1,36 @@
-﻿using Profiles.Domain.Entities.Records;
+using Profiles.Domain.Entities.Records;
 using Profiles.Domain.ValueObjects;
 
 namespace Profiles.Domain.Entities
 {
-  internal sealed class RoleEntity
+  internal sealed class LevelEntity
   {
-    public RoleIdValueObject RoleId { get; private set; }
+    public LevelIdValueObject LevelId { get; private set; }
     public NameValueObject Name { get; private set; }
     public DescriptionValueObject? Description { get; private set; }
     public DisabledValueObject Disabled { get; private set; }
 
-    public RoleEntity() { }
+    public LevelEntity() { }
 
-    public RoleEntity(RoleRecord data)
+    public LevelEntity(LevelRecord data)
     {
-      RoleId = data.RoleId;
+      LevelId = data.LevelId;
       Name = data.Name;
       Description = data.Description;
       Disabled = data.Disabled;
     }
 
-    public void Register(NameValueObject name, DescriptionValueObject? description = null)
+    public void Register(
+      NameValueObject name,
+      DescriptionValueObject? description,
+      LevelIdValueObject? id,
+      DisabledValueObject? disabled
+    )
     {
-      RoleId = new RoleIdValueObject(Guid.NewGuid().ToString());
+      LevelId = id ?? new LevelIdValueObject(Guid.NewGuid().ToString());
       Name = name;
-      if (description != null)
-      {
-        Description = description;
-      }
-      Disabled = new DisabledValueObject(false);
+      Description = description;
+      Disabled = disabled ?? new DisabledValueObject(false);
     }
 
     public void Enable()
