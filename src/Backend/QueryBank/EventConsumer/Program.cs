@@ -22,6 +22,7 @@ if (connectionString != null)
   );
 }
 builder.Services.AddHostedService<QueryBankSubscriber>();
+
 // ===============================================================
 
 // == Configure connection to the database ==
@@ -29,6 +30,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionDataBase"));
 });
+
 // ==========================================
 
 // == Configure repositories ==
@@ -37,6 +39,7 @@ builder.Services.AddSingleton<ISkillRepository<SkillModel>, SkillRepository>(ser
   var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
   return new SkillRepository(dbContext);
 });
+
 // ============================
 
 // == Configure dependency injection for services ==
@@ -44,6 +47,7 @@ builder.Services.AddSingleton<SharedEventHandler>();
 builder.Services.AddSingleton<ApplicationService>();
 builder.Services.AddSingleton<QueryBankServiceForSubscribers>();
 builder.Services.AddScoped<AntiCorruptionLayerService<AntiCorruptionLayer>>();
+
 // =================================================
 
 var app = builder.Build();

@@ -5,8 +5,7 @@ namespace Shared.Infrastructure.Services
 {
   public class StoreService : IStoreService
   {
-    private readonly string _storeUrl =
-      "XXXXXXXX";
+    private readonly string _storeUrl = "XXXXXXXX";
 
     public async Task<string> AddAsync(byte[] data, string extension, string containerName)
     {

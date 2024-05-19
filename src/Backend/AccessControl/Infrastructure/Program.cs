@@ -19,11 +19,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionDataBase"));
 });
+
 // ==========================================
 
 // == Configure repositories ==
 builder.Services.AddScoped<IUserRepository<UserModel>, UserRepository>();
 builder.Services.AddScoped<IRoleRepository<RoleModel>, RoleRepository>();
+
 // builder.Services.AddScoped<IUserPerRoleRepository<UserPerRoleModel>, UserPerRoleRepository>();
 // ============================
 
@@ -36,10 +38,12 @@ builder.Services.AddScoped<IStoreService, StoreService>();
 builder.Services.AddScoped<IAntiCorruptionLayer, AntiCorruptionLayer>();
 builder.Services.AddScoped<AntiCorruptionLayerService<AntiCorruptionLayer>>();
 builder.Services.AddScoped<IEnvironment, EnvironmentService>();
+
 // =================================================
 
 // == Configure interceptors for gRPC services ==
 builder.Services.AddSingleton<ErrorHandlingInterceptor>();
+
 // ==============================================
 
 // == Configure gRPC services ==
@@ -47,6 +51,7 @@ builder.Services.AddCodeFirstGrpc(options =>
 {
   options.Interceptors.Add<ErrorHandlingInterceptor>();
 });
+
 // ========================================
 
 var app = builder.Build();
@@ -58,10 +63,12 @@ using (var scope = app.Services.CreateScope())
   var context = services.GetRequiredService<ApplicationDbContext>();
   context.Database.Migrate();
 }
+
 // ================================================================================
 
 // == Configure gRPC services ==
 app.MapGrpcService<AccessControlService>();
+
 // =============================
 
 app.MapGet(
