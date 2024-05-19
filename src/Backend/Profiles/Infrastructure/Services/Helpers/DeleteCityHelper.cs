@@ -4,24 +4,29 @@ using Profiles.Infrastructure.Services.Helpers.Base;
 using Shared.Infrastructure.ProtocolBuffers.Profiles.Requests;
 using Shared.Infrastructure.ProtocolBuffers.Profiles.Responses;
 
-namespace Profiles.Infrastructure.Services.Helpers;
-
-internal class DeleteCityHelper : BaseHelperServiceInfrastructure
+namespace Profiles.Infrastructure.Services.Helpers
 {
-    public static async Task<DeleteCityResponse> DeleteCityAsync(DeleteCityRequest request)
+  internal class DeleteCityHelper : BaseHelperServiceInfrastructure
+  {
+    public static async Task<DeleteCityProfilesResponse> DeleteCityAsync(
+      DeleteCityProfilesRequest request
+    )
     {
-        var deleteCityCommand = MapToDeleteCityCommand(request);
-        var data = await Application.DeleteCity(deleteCityCommand);
-        return MapToDeleteCityResponse(data);
+      var deleteCityCommand = MapToDeleteCityCommand(request);
+      var data = await Application.DeleteCity(deleteCityCommand);
+      return MapToDeleteCityResponse(data);
     }
 
-    private static DeleteCityCommand MapToDeleteCityCommand(DeleteCityRequest request)
+    private static DeleteCityCommand MapToDeleteCityCommand(DeleteCityProfilesRequest request)
     {
-        return new DeleteCityCommand { CityId = request.CityId };
+      return new DeleteCityCommand { CityId = request.CityId };
     }
 
-    private static DeleteCityResponse MapToDeleteCityResponse(DeleteCityApplicationResponse data)
+    private static DeleteCityProfilesResponse MapToDeleteCityResponse(
+      DeleteCityApplicationResponse data
+    )
     {
-        return new DeleteCityResponse { CityId = data.CityId };
+      return new DeleteCityProfilesResponse { CityId = data.CityId };
     }
+  }
 }
