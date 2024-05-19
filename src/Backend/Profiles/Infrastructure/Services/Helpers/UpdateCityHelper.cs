@@ -8,32 +8,36 @@ namespace Profiles.Infrastructure.Services.Helpers;
 
 internal class UpdateCityHelper : BaseHelperServiceInfrastructure
 {
-    public static async Task<UpdateCityResponse> UpdateCityAsync(UpdateCityRequest request)
-    {
-        var updateCityCommand = MapToUpdateCityCommand(request);
-        var data = await Application.UpdateCity(updateCityCommand);
-        return MapToUpdateCityResponse(data);
-    }
+  public static async Task<UpdateCityProfilesResponse> UpdateCityAsync(
+    UpdateCityProfilesRequest request
+  )
+  {
+    var updateCityCommand = MapToUpdateCityCommand(request);
+    var data = await Application.UpdateCity(updateCityCommand);
+    return MapToUpdateCityResponse(data);
+  }
 
-    private static UpdateCityCommand MapToUpdateCityCommand(UpdateCityRequest request)
+  private static UpdateCityCommand MapToUpdateCityCommand(UpdateCityProfilesRequest request)
+  {
+    return new UpdateCityCommand
     {
-        return new UpdateCityCommand
-        {
-            CityId = request.CityId!,
-            ProvinceId = request.ProvinceId,
-            Name = request.Name,
-            Disable = request.Disable
-        };
-    }
+      CityId = request.CityId!,
+      ProvinceId = request.ProvinceId,
+      Name = request.Name,
+      Disable = request.Disable
+    };
+  }
 
-    private static UpdateCityResponse MapToUpdateCityResponse(UpdateCityApplicationResponse data)
+  private static UpdateCityProfilesResponse MapToUpdateCityResponse(
+    UpdateCityApplicationResponse data
+  )
+  {
+    return new UpdateCityProfilesResponse
     {
-        return new UpdateCityResponse
-        {
-            CityId = data.CityId,
-            ProvinceId = data.ProvinceId,
-            Name = data.Name,
-            Disabled = data.Disabled,
-        };
-    }
+      CityId = data.CityId,
+      ProvinceId = data.ProvinceId,
+      Name = data.Name,
+      Disabled = data.Disabled,
+    };
+  }
 }

@@ -4,36 +4,37 @@ using Profiles.Infrastructure.Services.Helpers.Base;
 using Shared.Infrastructure.ProtocolBuffers.Profiles.Requests;
 using Shared.Infrastructure.ProtocolBuffers.Profiles.Responses;
 
-namespace Profiles.Infrastructure.Services.Helpers;
-
-internal class RegisterProvinceHelper : BaseHelperServiceInfrastructure
+namespace Profiles.Infrastructure.Services.Helpers
 {
-    public static async Task<RegisterProvinceResponse> RegisterProvinceAsync(
-        RegisterProvinceRequest request
+  internal class RegisterProvinceHelper : BaseHelperServiceInfrastructure
+  {
+    public static async Task<RegisterProvinceProfilesResponse> RegisterProvinceAsync(
+      RegisterProvinceProfilesRequest request
     )
     {
-        var provinceCommand = MapToRegisterProvinceCommand(request);
-        var data = await Application.RegisterProvince(provinceCommand);
-        return MapToRegisterProvinceResponse(data);
+      var provinceCommand = MapToRegisterProvinceCommand(request);
+      var data = await Application.RegisterProvince(provinceCommand);
+      return MapToRegisterProvinceResponse(data);
     }
 
     private static RegisterProvinceCommand MapToRegisterProvinceCommand(
-        RegisterProvinceRequest request
+      RegisterProvinceProfilesRequest request
     )
     {
-        return new RegisterProvinceCommand { Name = request.Name, CountryId = request.CountryId };
+      return new RegisterProvinceCommand { Name = request.Name, CountryId = request.CountryId };
     }
 
-    private static RegisterProvinceResponse MapToRegisterProvinceResponse(
-        RegisterProvinceApplicationResponse data
+    private static RegisterProvinceProfilesResponse MapToRegisterProvinceResponse(
+      RegisterProvinceApplicationResponse data
     )
     {
-        return new RegisterProvinceResponse
-        {
-            ProvinceId = data.ProvinceId,
-            CountryId = data.CountryId,
-            Name = data.Name,
-            Disabled = data.Disabled,
-        };
+      return new RegisterProvinceProfilesResponse
+      {
+        ProvinceId = data.ProvinceId,
+        CountryId = data.CountryId,
+        Name = data.Name,
+        Disabled = data.Disabled,
+      };
     }
+  }
 }
