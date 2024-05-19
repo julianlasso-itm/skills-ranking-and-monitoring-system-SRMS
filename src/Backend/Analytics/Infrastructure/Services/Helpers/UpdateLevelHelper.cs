@@ -4,40 +4,41 @@ using Analytics.Infrastructure.Services.Helpers.Base;
 using Shared.Infrastructure.ProtocolBuffers.Analytics.Requests;
 using Shared.Infrastructure.ProtocolBuffers.Analytics.Responses;
 
-namespace Analytics.Infrastructure.Services.Helpers;
-
-internal class UpdateLevelHelper : BaseHelperServiceInfrastructure
+namespace Analytics.Infrastructure.Services.Helpers
 {
-    public static async Task<UpdateLevelSecurityResponse> UpdateLevelAsync(
-        UpdateLevelSecurityRequest request
+  internal class UpdateLevelHelper : BaseHelperServiceInfrastructure
+  {
+    public static async Task<UpdateLevelAnalyticsResponse> UpdateLevelAsync(
+      UpdateLevelAnalyticsRequest request
     )
     {
-        var updateLevelCommand = MapToUpdateLevelCommand(request);
-        var data = await Application.UpdateLevel(updateLevelCommand);
-        return MapToUpdateLevelResponse(data);
+      var updateLevelCommand = MapToUpdateLevelCommand(request);
+      var data = await Application.UpdateLevel(updateLevelCommand);
+      return MapToUpdateLevelResponse(data);
     }
 
-    private static UpdateLevelCommand MapToUpdateLevelCommand(UpdateLevelSecurityRequest request)
+    private static UpdateLevelCommand MapToUpdateLevelCommand(UpdateLevelAnalyticsRequest request)
     {
-        return new UpdateLevelCommand
-        {
-            LevelId = request.LevelId!,
-            Name = request.Name,
-            Description = request.Description,
-            Disable = request.Disable
-        };
+      return new UpdateLevelCommand
+      {
+        LevelId = request.LevelId!,
+        Name = request.Name,
+        Description = request.Description,
+        Disable = request.Disable
+      };
     }
 
-    private static UpdateLevelSecurityResponse MapToUpdateLevelResponse(
-        UpdateLevelApplicationResponse data
+    private static UpdateLevelAnalyticsResponse MapToUpdateLevelResponse(
+      UpdateLevelApplicationResponse data
     )
     {
-        return new UpdateLevelSecurityResponse
-        {
-            LevelId = data.LevelId,
-            Name = data.Name,
-            Description = data.Description,
-            Disabled = data.Disabled,
-        };
+      return new UpdateLevelAnalyticsResponse
+      {
+        LevelId = data.LevelId,
+        Name = data.Name,
+        Description = data.Description,
+        Disabled = data.Disabled,
+      };
     }
+  }
 }
