@@ -6,7 +6,7 @@ namespace Shared.Infrastructure.Services
   public class StoreService : IStoreService
   {
     private readonly string _storeUrl =
-      "DefaultEndpointsProtocol=https;AccountName=orderszulu2024;AccountKey=aUBtiF7GTURebDNoae/2mn3BxISYUe5GzpldozWo96SI07nPU/M3XUf3JjUdtdlX/nTsJ48/8EkM+AStm/YdLA==;EndpointSuffix=core.windows.net";
+      "XXXXXXXX";
 
     public async Task<string> AddAsync(byte[] data, string extension, string containerName)
     {
