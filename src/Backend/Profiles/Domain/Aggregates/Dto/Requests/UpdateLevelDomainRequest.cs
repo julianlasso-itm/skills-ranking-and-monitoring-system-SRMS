@@ -1,10 +1,10 @@
 namespace Profiles.Domain.Aggregates.Dto.Requests
 {
-  public class UpdateProvinceDomainRequest
+  public class UpdateLevelDomainRequest
   {
-    public required string ProvinceId { get; init; }
-    public string? CountryId { get; init; }
+    public required string LevelId { get; init; }
     public string? Name { get; init; }
+    public string? Description { get; init; }
     public bool? Disable { get; init; }
   }
 }

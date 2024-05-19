@@ -1,10 +1,10 @@
 namespace Profiles.Domain.Aggregates.Dto.Responses
 {
-  public class UpdateCityDomainResponse
+  public class UpdateLevelDomainResponse
   {
-    public required string CityId { get; init; }
-    public string? ProvinceId { get; set; }
+    public required string LevelId { get; init; }
     public string? Name { get; set; }
+    public string? Description { get; set; }
     public bool? Disabled { get; set; }
   }
 }
