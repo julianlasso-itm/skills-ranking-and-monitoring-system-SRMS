@@ -20,9 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Infrastructure", "src\Backend\Shared\Infrastructure\Shared.Infrastructure.csproj", "{95F2C4F7-D786-40B3-8724-67E59E11F4B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AccessControl", "AccessControl", "{F06FF958-B52F-4BED-BC7E-AD2A4E576309}"
-	ProjectSection(SolutionItems) = preProject
-		src\Backend\Profiles\Application\UseCases\DeleteRoleDomainRequest.cs = src\Backend\Profiles\Application\UseCases\DeleteRoleDomainRequest.cs
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessControl.Domain", "src\Backend\AccessControl\Domain\AccessControl.Domain.csproj", "{9D1780B0-1ED6-4BAE-B6D0-2042097FCC19}"
 EndProject
@@ -61,6 +58,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueryBank.Application", "src\Backend\QueryBank\Application\QueryBank.Application.csproj", "{30F231D3-7687-4D18-9C09-8E96BB62A2BB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueryBank.Infrastructure", "src\Backend\QueryBank\Infrastructure\QueryBank.Infrastructure.csproj", "{AE92D762-690D-4966-822F-5B4C4DA184E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryBank.EventConsumer", "src\Backend\QueryBank\EventConsumer\QueryBank.EventConsumer.csproj", "{3FBB7B01-EB5F-40BA-B2DF-30A1FA16086B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiles.EventConsumer", "src\Backend\Profiles\EventConsumer\Profiles.EventConsumer.csproj", "{9BE54229-22D3-4E4D-90F2-5D071C049692}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,6 +145,14 @@ Global
 		{AE92D762-690D-4966-822F-5B4C4DA184E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE92D762-690D-4966-822F-5B4C4DA184E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE92D762-690D-4966-822F-5B4C4DA184E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FBB7B01-EB5F-40BA-B2DF-30A1FA16086B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FBB7B01-EB5F-40BA-B2DF-30A1FA16086B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FBB7B01-EB5F-40BA-B2DF-30A1FA16086B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FBB7B01-EB5F-40BA-B2DF-30A1FA16086B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE54229-22D3-4E4D-90F2-5D071C049692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE54229-22D3-4E4D-90F2-5D071C049692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE54229-22D3-4E4D-90F2-5D071C049692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE54229-22D3-4E4D-90F2-5D071C049692}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,6 +185,8 @@ Global
 		{979BB615-3109-4DB8-B54E-581C1EC40634} = {BA2DA6A7-0BB0-430D-AC6B-BA544390AF5B}
 		{30F231D3-7687-4D18-9C09-8E96BB62A2BB} = {BA2DA6A7-0BB0-430D-AC6B-BA544390AF5B}
 		{AE92D762-690D-4966-822F-5B4C4DA184E4} = {BA2DA6A7-0BB0-430D-AC6B-BA544390AF5B}
+		{3FBB7B01-EB5F-40BA-B2DF-30A1FA16086B} = {BA2DA6A7-0BB0-430D-AC6B-BA544390AF5B}
+		{9BE54229-22D3-4E4D-90F2-5D071C049692} = {E6B07F08-6630-4083-AAB1-1FA3F4862322}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {24E6F688-029A-4CD7-9424-D87949D440F6}
