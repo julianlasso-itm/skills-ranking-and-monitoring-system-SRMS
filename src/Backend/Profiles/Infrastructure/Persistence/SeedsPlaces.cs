@@ -1,78 +1,79 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Profiles.Infrastructure.Persistence.Models;
 
 namespace Profiles.Infrastructure.Persistence
-
-public class SeedsPlaces
 {
-  private static Guid VenezuelaId = Guid.NewGuid();
-  private static Guid PanamaId = Guid.NewGuid();
-  private static Guid CostaRicaId = Guid.NewGuid();
-  private static Guid NicaraguaId = Guid.NewGuid();
-  private static Guid HondurasId = Guid.NewGuid();
-  private static Guid GuatemalaId = Guid.NewGuid();
-  private static Guid ElSalvadorId = Guid.NewGuid();
-  private static Guid BelizeId = Guid.NewGuid();
-  private static Guid MexicoId = Guid.NewGuid();
-  private static Guid PeruId = Guid.NewGuid();
-  private static Guid ChileId = Guid.NewGuid();
-  private static Guid ArgentinaId = Guid.NewGuid();
-  private static Guid BrazilId = Guid.NewGuid();
-  private static Guid ParaguayId = Guid.NewGuid();
-  private static Guid UruguayId = Guid.NewGuid();
-  private static Guid BoliviaId = Guid.NewGuid();
-  private static Guid EcuadorId = Guid.NewGuid();
-  private static Guid AzuayId = Guid.NewGuid();
-  private static Guid BolivarEId = Guid.NewGuid();
-  private static Guid CanarId = Guid.NewGuid();
-  private static Guid CarchiId = Guid.NewGuid();
-  private static Guid ChimborazoId = Guid.NewGuid();
-  private static Guid CotopaxiId = Guid.NewGuid();
-  private static Guid ElOroId = Guid.NewGuid();
-  private static Guid EsmeraldasId = Guid.NewGuid();
-  private static Guid GalapagosId = Guid.NewGuid();
-  private static Guid GuayasId = Guid.NewGuid();
-  private static Guid ImbaburaId = Guid.NewGuid();
-  private static Guid LojaId = Guid.NewGuid();
-  private static Guid ManabiId = Guid.NewGuid();
-  private static Guid MoronaSantiagoId = Guid.NewGuid();
-  private static Guid NapoId = Guid.NewGuid();
-  private static Guid ColombiaId = Guid.NewGuid();
-  private static Guid AmazonasId = Guid.NewGuid();
-  private static Guid AntioquiaId = Guid.NewGuid();
-  private static Guid AraucaId = Guid.NewGuid();
-  private static Guid AtlanticoId = Guid.NewGuid();
-  private static Guid BolivarId = Guid.NewGuid();
-  private static Guid BoyacaId = Guid.NewGuid();
-  private static Guid CaldasId = Guid.NewGuid();
-  private static Guid CaquetaId = Guid.NewGuid();
-  private static Guid CasanareId = Guid.NewGuid();
-  private static Guid CaucaId = Guid.NewGuid();
-  private static Guid CesarId = Guid.NewGuid();
-  private static Guid ChocoId = Guid.NewGuid();
-  private static Guid CordobaId = Guid.NewGuid();
-  private static Guid CundinamarcaId = Guid.NewGuid();
-  private static Guid GuainiaId = Guid.NewGuid();
-  private static Guid GuaviareId = Guid.NewGuid();
-  private static Guid HuilaId = Guid.NewGuid();
-  private static Guid LaGuajiraId = Guid.NewGuid();
-  private static Guid MagdalenaId = Guid.NewGuid();
-  private static Guid MetaId = Guid.NewGuid();
-  private static Guid NarinoId = Guid.NewGuid();
-  private static Guid NorteDeSantanderId = Guid.NewGuid();
-  private static Guid PutumayoId = Guid.NewGuid();
-  private static Guid QuindioId = Guid.NewGuid();
-  private static Guid RisaraldaId = Guid.NewGuid();
-  private static Guid SanAndresYProvidenciaId = Guid.NewGuid();
-  private static Guid SantanderId = Guid.NewGuid();
-  private static Guid SucreId = Guid.NewGuid();
-  private static Guid TolimaId = Guid.NewGuid();
-  private static Guid ValleDelCaucaId = Guid.NewGuid();
-  private static Guid VaupesId = Guid.NewGuid();
-  private static Guid VichadaId = Guid.NewGuid();
-  public static void SeedCountries(ModelBuilder modelBuilder)
+
+  public class SeedsPlaces
   {
-    var countries = new List<CountryModel>
+    private static Guid VenezuelaId = Guid.NewGuid();
+    private static Guid PanamaId = Guid.NewGuid();
+    private static Guid CostaRicaId = Guid.NewGuid();
+    private static Guid NicaraguaId = Guid.NewGuid();
+    private static Guid HondurasId = Guid.NewGuid();
+    private static Guid GuatemalaId = Guid.NewGuid();
+    private static Guid ElSalvadorId = Guid.NewGuid();
+    private static Guid BelizeId = Guid.NewGuid();
+    private static Guid MexicoId = Guid.NewGuid();
+    private static Guid PeruId = Guid.NewGuid();
+    private static Guid ChileId = Guid.NewGuid();
+    private static Guid ArgentinaId = Guid.NewGuid();
+    private static Guid BrazilId = Guid.NewGuid();
+    private static Guid ParaguayId = Guid.NewGuid();
+    private static Guid UruguayId = Guid.NewGuid();
+    private static Guid BoliviaId = Guid.NewGuid();
+    private static Guid EcuadorId = Guid.NewGuid();
+    private static Guid AzuayId = Guid.NewGuid();
+    private static Guid BolivarEId = Guid.NewGuid();
+    private static Guid CanarId = Guid.NewGuid();
+    private static Guid CarchiId = Guid.NewGuid();
+    private static Guid ChimborazoId = Guid.NewGuid();
+    private static Guid CotopaxiId = Guid.NewGuid();
+    private static Guid ElOroId = Guid.NewGuid();
+    private static Guid EsmeraldasId = Guid.NewGuid();
+    private static Guid GalapagosId = Guid.NewGuid();
+    private static Guid GuayasId = Guid.NewGuid();
+    private static Guid ImbaburaId = Guid.NewGuid();
+    private static Guid LojaId = Guid.NewGuid();
+    private static Guid ManabiId = Guid.NewGuid();
+    private static Guid MoronaSantiagoId = Guid.NewGuid();
+    private static Guid NapoId = Guid.NewGuid();
+    private static Guid ColombiaId = Guid.NewGuid();
+    private static Guid AmazonasId = Guid.NewGuid();
+    private static Guid AntioquiaId = Guid.NewGuid();
+    private static Guid AraucaId = Guid.NewGuid();
+    private static Guid AtlanticoId = Guid.NewGuid();
+    private static Guid BolivarId = Guid.NewGuid();
+    private static Guid BoyacaId = Guid.NewGuid();
+    private static Guid CaldasId = Guid.NewGuid();
+    private static Guid CaquetaId = Guid.NewGuid();
+    private static Guid CasanareId = Guid.NewGuid();
+    private static Guid CaucaId = Guid.NewGuid();
+    private static Guid CesarId = Guid.NewGuid();
+    private static Guid ChocoId = Guid.NewGuid();
+    private static Guid CordobaId = Guid.NewGuid();
+    private static Guid CundinamarcaId = Guid.NewGuid();
+    private static Guid GuainiaId = Guid.NewGuid();
+    private static Guid GuaviareId = Guid.NewGuid();
+    private static Guid HuilaId = Guid.NewGuid();
+    private static Guid LaGuajiraId = Guid.NewGuid();
+    private static Guid MagdalenaId = Guid.NewGuid();
+    private static Guid MetaId = Guid.NewGuid();
+    private static Guid NarinoId = Guid.NewGuid();
+    private static Guid NorteDeSantanderId = Guid.NewGuid();
+    private static Guid PutumayoId = Guid.NewGuid();
+    private static Guid QuindioId = Guid.NewGuid();
+    private static Guid RisaraldaId = Guid.NewGuid();
+    private static Guid SanAndresYProvidenciaId = Guid.NewGuid();
+    private static Guid SantanderId = Guid.NewGuid();
+    private static Guid SucreId = Guid.NewGuid();
+    private static Guid TolimaId = Guid.NewGuid();
+    private static Guid ValleDelCaucaId = Guid.NewGuid();
+    private static Guid VaupesId = Guid.NewGuid();
+    private static Guid VichadaId = Guid.NewGuid();
+    public static void SeedCountries(ModelBuilder modelBuilder)
+    {
+      var countries = new List<CountryModel>
     {
       new()
       {
@@ -183,11 +184,11 @@ public class SeedsPlaces
         Disabled = false,
       },
     };
-    modelBuilder.Entity<CountryModel>().HasData(countries);
-  }
-  public static void SeedProvinces(ModelBuilder modelBuilder)
-  {
-    var provinces = new List<ProvinceModel>
+      modelBuilder.Entity<CountryModel>().HasData(countries);
+    }
+    public static void SeedProvinces(ModelBuilder modelBuilder)
+    {
+      var provinces = new List<ProvinceModel>
     {
       new()
       {
@@ -519,11 +520,11 @@ public class SeedsPlaces
         Disabled = false,
       },
     };
-    modelBuilder.Entity<ProvinceModel>().HasData(provinces);
-  }
-  public static void SeedCities(ModelBuilder modelBuilder)
-  {
-    var cities = new List<CityModel>()
+      modelBuilder.Entity<ProvinceModel>().HasData(provinces);
+    }
+    public static void SeedCities(ModelBuilder modelBuilder)
+    {
+      var cities = new List<CityModel>()
     {
       // Amazonas
       new()
@@ -1433,6 +1434,7 @@ public class SeedsPlaces
         Disabled = false,
       },
     };
-    modelBuilder.Entity<CityModel>().HasData(cities);
+      modelBuilder.Entity<CityModel>().HasData(cities);
+    }
   }
 }
