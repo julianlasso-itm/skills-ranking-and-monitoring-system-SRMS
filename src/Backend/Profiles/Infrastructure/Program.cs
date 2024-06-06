@@ -10,6 +10,7 @@ using ProtoBuf.Grpc.Server;
 using Shared.Infrastructure.Events;
 using Shared.Infrastructure.Interceptors;
 using Shared.Infrastructure.Services;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
   options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnectionDataBase"));
 });
-
 // ==========================================
+
+// == Configure connection to Redis ==
+var multiplexer = ConnectionMultiplexer.Connect(
+  builder.Configuration.GetConnectionString("RedisConnection")!
+);
+builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
+// ===================================
 
 // == Configure repositories ==
 builder.Services.AddScoped<ICountryRepository<CountryModel>, CountryRepository>();
@@ -29,7 +36,6 @@ builder.Services.AddScoped<IRoleRepository<RoleModel>, RoleRepository>();
 builder.Services.AddScoped<ISkillRepository<SkillModel>, SkillRepository>();
 builder.Services.AddScoped<IProfessionalRepository<ProfessionalModel>, ProfessionalRepository>();
 builder.Services.AddScoped<ILevelRepository<LevelModel>, LevelRepository>();
-
 // ============================
 
 // == Configure dependency injection for services ==
@@ -37,12 +43,10 @@ builder.Services.AddScoped<SharedEventHandler>();
 builder.Services.AddScoped<ApplicationService>();
 builder.Services.AddScoped<IAntiCorruptionLayer, AntiCorruptionLayer>();
 builder.Services.AddScoped<AntiCorruptionLayerService<AntiCorruptionLayer>>();
-
 // =================================================
 
 // == Configure interceptors for gRPC services ==
 builder.Services.AddSingleton<ErrorHandlingInterceptor>();
-
 // ==============================================
 
 // == Configure gRPC services ==
@@ -50,7 +54,6 @@ builder.Services.AddCodeFirstGrpc(options =>
 {
   options.Interceptors.Add<ErrorHandlingInterceptor>();
 });
-
 // ========================================
 
 var app = builder.Build();
@@ -62,12 +65,10 @@ using (var scope = app.Services.CreateScope())
   var context = services.GetRequiredService<ApplicationDbContext>();
   context.Database.Migrate();
 }
-
 // ================================================================================
 
 // == Configure gRPC services ==
 app.MapGrpcService<ProfilesService>();
-
 // =============================
 
 app.MapGet(
